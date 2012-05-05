@@ -1,16 +1,31 @@
 .pre-match
-  .big which one you like?
+  %h1= "[ Which #{@item_type} you like more? ]"
   .left
-    - i = @items[0]
-    .img= link_to image_tag(i.big_img), "/main/pre_match", method: :post
-    .user= link_to i.title, i.link
+    - i1 = @items[0]
+    .img= link_to image_tag(i1.big_img, class: 'itm-img'), i1.link, target: "_blank" 
+
+  .middle.vs VS
     
   .right
-    - i = @items[1]
-    .img= link_to image_tag(i.big_img), "/main/pre_match", method: :post
-    .user= link_to i.title, i.link
+    - i2 = @items[1]
+    .img= link_to image_tag(i2.big_img, class: 'itm-img'), i2.link, target: "_blank" 
+
+  .clearfix
+
+
+  .left
+    .title= link_to i1.title, i1.link, target: "_blank"
+  .middle
+  .right
+    .title= link_to i2.title, i2.link, target: "_blank"
 
   .clearfix
   
-  .neither
-    = button_to "Neither of them", "/"
+  .left
+    = button_to "I Like This", "/main/pre_match"
+  .middle.neither
+    = button_to "Neither of Them", "/main/pre_match"
+  .right
+    = button_to "I Like This", "/main/pre_match"
+
+  .clearfix

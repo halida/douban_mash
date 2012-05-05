@@ -16,7 +16,8 @@ development:
   database: douban
   username: douban
   password: douban
-  host: 192.168.1.4
+  host: 10.77.77.103
+#192.168.1.4
 
 
 # Warning: The database defined as "test" will be erased and

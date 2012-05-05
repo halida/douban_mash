@@ -17,52 +17,12 @@
 
 
   %body
-    .navbar.navbar-fixed-top
-      .navbar-inner
-        .container
-          %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          %a.brand{:href => "/"}DoubanMash
-          .container.nav-collapse
-            -# %ul.nav
-            -#   %li= link_to "posts", "/posts"
-            -#   %li= link_to "Link 2", "/path2"
-            -#   %li= link_to "Link 3", "/path3"
-            %ul.nav.pull-right
-              - if user_signed_in?
-                %li= link_to current_user.name, "/"
-                -# %li= link_to "Admin", "/admin" if current_user.admin?
+    .navbar
+      %a.brand{:href => "/"}= "[ DoubanMash ]"
 
-                %li= link_to "Sign out", destroy_user_session_path, method: :delete
-              - else
-                -# %li= link_to "Sign up", new_user_registration_path
-                %li= link_to "Sign in with Douban", "/douban"
-                -# %li= link_to "Sign in", new_user_session_path
+    .container(data-pjax-container)
+      = yield
 
-
-    .container
-
-      .content
-        .row
-          .span12(data-pjax-container)
-            = yield
-          -# .span3
-          -#   .well.sidebar-nav
-          -#     %h3 Sidebar
-          -#     %ul.nav.nav-list
-          -#       %li.nav-header Sidebar
-          -#       %li= link_to "Link 1", "/path1"
-          -#       %li= link_to "Link 2", "/path2"
-          -#       %li= link_to "Link 3", "/path3"
-    
-      -# %footer
-      -#   %p &copy; Company 2012
-    /
-      Le javascript
-      \==================================================
-    / Placed at the end of the document so the pages load faster
     = javascript_include_tag "application"
 
 

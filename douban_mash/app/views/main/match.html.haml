@@ -1,13 +1,23 @@
-%h1 This girl maybe good for you
-.match-user
+.match
+  %h1 [ Magic of DoubanMash ]
+  .desc
+    She will be #loc, Shanghai on #time for joining the event: #event.
   .left
-    .img= image_tag @douban_user.big_img
-    .title= link_to @douban_user.name, @douban_user.link
+    .img= link_to image_tag(@douban_user.big_img, class: "peop-img"), @douban_user.link, target: "_blank"
   .right
-    .desc= @douban_user.json_data['content']
+    %table
+      %tr
+        %td.em Name:
+        %td= link_to @douban_user.name, @douban_user.link, target: "_blank"
+      %tr
+        %td.em Location:
+        %td
+      %tr
+        %td.em Bio:
+        %td= truncate @douban_user.json_data['content'], length: 200
   .clearfix
 
 
-.next
-  %input{type: 'submit', value: "Next", onclick: "window.location = '/main/match'"}
-  %input{type: 'submit', value: "Poker Her", onclick: "window.location = '/main/poker?to_id=#{@douban_user.id}'"}
+  .next
+    %input{type: 'submit', value: "Approach Her", onclick: "window.location = '/main/poker?to_id=#{@douban_user.id}'"}
+    %input{type: 'submit', value: "Next", onclick: "window.location = '/main/match'"}

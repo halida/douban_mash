@@ -1,26 +1,144 @@
-.show-title
-  margin: 10px 0
-.big
-  font-size: 40px      
-  line-height: 50px
+@import compass/reset
 
-.match-user
-  .left
-    float: left
-    margin-right: 10px
-  .right
-    float: left
-    width: 600px
+body
+  font-family: tahoma,helvetica,clean,sans-serif
 
+
+a 
+  color: #6699cc
+  text-decoration: none
+
+input[type=submit], input[type=button]
+  background-color: #6699cc
+  color: white
+  border: 1px
+  padding: 4px 7px
+  // font-weight: bold
+  cursor: pointer
+  &:hover
+    background-color: #369
+
+input[type=text]
+  border: 1px solid #000
+  padding: 1px 2px
+  height: 20px
+  width: 400px
+textarea
+  width: 400px
+  height: 100px
+  
 .clearfix
   clear: both      
 
 h1
+  font-size: 26px
+  padding: 20px 0 30px
+  text-align: center
+  font-weight: bold
 
-.pre-match
+.show
+  text-align: center
+  .start
+    font-size: 20px
+    margin: 20px
+    width: 300px
+
+.match
+  .desc
+    margin-bottom: 20px
+
   .left
     float: left
+    margin-right: 20px
+    width: 150px
+    .peop-img
+      width: 150px
+
   .right
     float: left
+    width: 600px
 
+    table
+      margin-bottom: 4px
+      line-height: 1.5em
+      .em
+        vertical-align: top
+        font-weight: bold
+        color: #000
+        width: 100px                
+
+  .next
+    margin-top: 10px
+
+.result
+  .desc
+    text-align: center
+    line-height: 1.2em
+
+.poker
+  .left
+    float: left
+    margin-right: 20px
+    width: 150px
+    .peop-img
+      width: 150px
+
+  .title, .desc
+    margin-bottom: 10px
+
+.pre-match
+  margin: 0 auto
+  width: 580px
+
+  .left, .right
+    margin: 10px
+    width: 200px   
+
+    .img
+      min-height: 300px 
+    .itm-img
+      width: 200px   
+
+  .left, .middle, .right
+    float: left
+    text-align: center
+
+  .middle
+    width: 100px
+    min-height: 10px
+
+  .vs 
+    font-size: 36px
+    margin-top: 150px
+    text-align: center
+
+  .title
+    a
+      color: #000
+
+  .neither
+    margin-top: 10px
+
+.navbar
+  position: fixed
+  top: 0
+  width: 100%
+  height: 60px
+  padding: 10px
+
+  background-color: #336699
+  color: #6699cc
+
+  .brand
+    float: right
+    margin: 10px 50px 20px 20px
+    font-weight: bold
+    font-size: 40px   
+
+body
+  margin-top: 90px
+
+.container
+  width: 800px
+  margin: 0 auto
 

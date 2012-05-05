@@ -1,3 +1,5 @@
-= form_tag("/main/gender", method: :get) do
-  .show-title= image_tag "show.jpg"
-  = submit_tag "commit"
+.show
+  = form_tag do
+    %h1 [ Welcome to DoubanMash ]
+    .img= image_tag "show.jpg"
+    = submit_tag "Get Start!", class: "start"

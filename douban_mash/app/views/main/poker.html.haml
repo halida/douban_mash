@@ -1,8 +1,8 @@
-= form_tag do
-  = hidden_field_tag :to_id, params[:to_id]
-  .id 
-    send to user:
-    = params[:to_id]
-  .title= text_field_tag :title
-  .desc= text_area_tag :desc
-  .commit= submit_tag "commit"
+.poker
+  .left
+    .img= link_to image_tag(@douban_user.big_img, class: "peop-img"), @douban_user.link, target: "_blank"
+  = form_tag do
+    = hidden_field_tag :to_id, params[:to_id]
+    .title= text_field_tag :title, "", placeholder: "Message Subject"
+    .desc= text_area_tag :desc, "", placeholder: "Message Content"
+    .commit= submit_tag "Send"
