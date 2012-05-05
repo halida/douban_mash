@@ -18,4 +18,8 @@ class MainController < ApplicationController
 
   def poker
   end
+
+  def users
+    @users = Doubanuser.paginate(page: params[:page])
+  end
 end

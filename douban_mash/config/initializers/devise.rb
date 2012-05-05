@@ -212,7 +212,11 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   require "omniauth-douban"
-  config.omniauth :douban, "0f89b8bc396423112e9d2a34ac2c6933", "4e0d52e13eb41484"
+  # config.omniauth :douban, "0f89b8bc396423112e9d2a34ac2c6933", "4e0d52e13eb41484"
+  config.omniauth :douban, "0fb6d0a851af01a12f2471f8f50d04e3", "c59e3be2ccdde999"
+
+  require "omniauth-github"
+  config.omniauth :github, "fc4fcada7375f0340d00", "febe5520977de84f0dbb65196a936d7c76c6d552"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

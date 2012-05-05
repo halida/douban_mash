@@ -9,7 +9,13 @@ gem 'sqlite3'
 gem 'mysql2'
 
 gem 'omniauth', '~> 1.0.0'
-gem 'omniauth-douban'
+gem 'omniauth-douban', git: "git://github.com/xdite/omniauth-douban.git"
+gem 'omniauth-github'
+
+gem 'douban-ruby', git: "https://github.com/lidaobing/douban-ruby.git"
+
+gem 'nestful'
+
 
 gem 'settingslogic'
 

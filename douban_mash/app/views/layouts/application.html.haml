@@ -10,7 +10,7 @@
     / Le styles
     = stylesheet_link_tag "application", :media => "all"
     / Le fav and touch icons
-    %link{:href => "images/favicon.ico", :rel => "shortcut icon"}/
+    %link{:href => image_path("favicon.ico"), :rel => "shortcut icon"}/
     %link{:href => "images/apple-touch-icon.png", :rel => "apple-touch-icon"}/
     %link{:href => "images/apple-touch-icon-72x72.png", :rel => "apple-touch-icon", :sizes => "72x72"}/
     %link{:href => "images/apple-touch-icon-114x114.png", :rel => "apple-touch-icon", :sizes => "114x114"}/
@@ -32,12 +32,13 @@
               %li= link_to "Link 3", "/path3"
             %ul.nav.pull-right
               - if user_signed_in?
-                %li= link_to current_user.email, "/"
-                %li= link_to "Admin", "/admin" if current_user.admin?
-                %li= link_to "Sign in with Douban", user_omniauth_authorize_path(:douban)
+                %li= link_to current_user.name, "/"
+                -# %li= link_to "Admin", "/admin" if current_user.admin?
+
                 %li= link_to "Sign out", destroy_user_session_path, method: :delete
               - else
-                %li= link_to "Sign up", new_user_registration_path
+                -# %li= link_to "Sign up", new_user_registration_path
+                %li= link_to "Sign in with Douban", "/douban"
                 %li= link_to "Sign in", new_user_session_path
 
 
@@ -63,3 +64,6 @@
       \==================================================
     / Placed at the end of the document so the pages load faster
     = javascript_include_tag "application"
+
+
+
