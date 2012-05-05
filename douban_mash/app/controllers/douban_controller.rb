@@ -38,7 +38,9 @@ class DoubanController < ApplicationController
   end
 
   def create_user token
-    pre = session[:pre]
+    pre = cookies[:pre]
+    cookies[:pre] = ""
+
     people = douban.get_people
     id = people.id.split('/')[-1].to_i
     user = User.find_or_create_by_douban_id id

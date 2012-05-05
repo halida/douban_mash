@@ -16,7 +16,9 @@ class MainController < ApplicationController
 
     if request.post?
       # current_user.matches.create!
-      session[:matches] << 1
+      if params[:type]
+        session[:matches] << {type: params[:type], id: params[:id]}
+      end
     end
 
     item_class = [Book, Music, Movie].sample
@@ -34,11 +36,7 @@ class MainController < ApplicationController
     @has_next = @pokereds < Pokered::MAX_COUNT - 1
 
     target_gender = 'female'
-    scope = Doubanuser.where("data != ''")
-      .where(gender: target_gender)
-      .where('id in (select user_id from userevents)')
-    scope = scope.where("id not in (?)", session[:pokereds]) if session[:pokereds].count > 0
-    @douban_user = scope.random
+    @douban_user = Match.match gender: target_gender, excepts: session[:pokereds], matches: session[:matches]
     @event = @douban_user.userevents.first.event
     session[:pokereds] << @douban_user.id
   end

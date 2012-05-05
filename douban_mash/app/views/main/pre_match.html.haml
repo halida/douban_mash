@@ -22,10 +22,10 @@
   .clearfix
   
   .left
-    = button_to "I Like This", "/main/pre_match"
+    = button_to "I Like This", "/main/pre_match?type=#{@item_type}&id=#{i1.id}"
   .middle.neither
     = button_to "Neither of Them", "/main/pre_match"
   .right
-    = button_to "I Like This", "/main/pre_match"
+    = button_to "I Like This", "/main/pre_match?type=#{@item_type}&id=#{i2.id}"
 
   .clearfix
