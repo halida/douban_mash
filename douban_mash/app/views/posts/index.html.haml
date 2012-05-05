@@ -1,0 +1,22 @@
+%h1 Posts
+%table.table.table-striped
+  %thead
+    %tr
+      %th ID
+      %th
+        = t("activerecord.attributes.post.title", :default => t("activerecord.labels.title", :default => "Title"))
+      %th Created at
+      %th Actions
+  %tbody
+    - @posts.each do |post|
+      %tr
+        %td= post.id
+        %td= link_to post.title, post_path(post)
+        %td= post.created_at
+        %td
+          = link_to "Show", post_path(post), :class => 'btn btn-mini'
+          - if can? :manage, post
+            = link_to "Edit", edit_post_path(post), :class => 'btn btn-mini'
+            = link_to "Destroy", post_path(post), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => 'btn btn-mini btn-danger' 
+
+= link_to "New", new_post_path, :class => 'btn btn-primary' if can? :create, Post

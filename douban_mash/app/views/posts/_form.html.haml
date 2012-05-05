@@ -1,0 +1,8 @@
+= simple_form_for @post, validate: true, :html => { :class => 'form-horizontal' } do |f| 
+  = f.error_notification
+  .form-inputs
+    = f.input :title, :label => 'Your title please'
+    = f.input :description, :hint => 'No special characters.'
+  .form-actions
+    = f.button :submit
+

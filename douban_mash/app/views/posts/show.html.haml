@@ -1,0 +1,13 @@
+%p
+  %strong= t("activerecord.attributes.post.title", :default => t("activerecord.labels.title", :default => "Title")) + ":"
+  %br
+  = @post.title
+%p
+  %strong= t("activerecord.attributes.post.description", :default => t("activerecord.labels.description", :default => "Description")) + ":"
+  %br
+  = @post.description
+
+.form-actions
+  = link_to "Back", posts_path, :class => 'btn'
+  = link_to "Edit", edit_post_path(@post), :class => 'btn'
+  = link_to "Delete", post_path(@post), :method => "delete", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => 'btn btn-danger'
