@@ -1,7 +1,13 @@
 %h1 This girl maybe good for you
-.title= @douban_user.name
-.desc= @douban_user.id
+.match-user
+  .left
+    .img= image_tag @douban_user.big_img
+    .title= link_to @douban_user.name, @douban_user.link
+  .right
+    .desc= @douban_user.json_data['content']
+  .clearfix
+
 
 .next
-  = button_to "Next", "/main/match"
+  %input{type: 'submit', value: "Next", onclick: "window.location = '/main/match'"}
   %input{type: 'submit', value: "Poker Her", onclick: "window.location = '/main/poker?to_id=#{@douban_user.id}'"}

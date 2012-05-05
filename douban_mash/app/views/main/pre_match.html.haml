@@ -1,0 +1,16 @@
+.pre-match
+  .big which one you like?
+  .left
+    - i = @items[0]
+    .img= link_to image_tag(i.big_img), "/main/pre_match", method: :post
+    .user= link_to i.title, i.link
+    
+  .right
+    - i = @items[1]
+    .img= link_to image_tag(i.big_img), "/main/pre_match", method: :post
+    .user= link_to i.title, i.link
+
+  .clearfix
+  
+  .neither
+    = button_to "Neither of them", "/"
