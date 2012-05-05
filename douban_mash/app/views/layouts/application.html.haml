@@ -26,10 +26,10 @@
             %span.icon-bar
           %a.brand{:href => "/"}DoubanMash
           .container.nav-collapse
-            %ul.nav
-              %li= link_to "posts", "/posts"
-              %li= link_to "Link 2", "/path2"
-              %li= link_to "Link 3", "/path3"
+            -# %ul.nav
+            -#   %li= link_to "posts", "/posts"
+            -#   %li= link_to "Link 2", "/path2"
+            -#   %li= link_to "Link 3", "/path3"
             %ul.nav.pull-right
               - if user_signed_in?
                 %li= link_to current_user.name, "/"
@@ -39,26 +39,26 @@
               - else
                 -# %li= link_to "Sign up", new_user_registration_path
                 %li= link_to "Sign in with Douban", "/douban"
-                %li= link_to "Sign in", new_user_session_path
+                -# %li= link_to "Sign in", new_user_session_path
 
 
     .container
 
       .content
         .row
-          .span9(data-pjax-container)
+          .span12(data-pjax-container)
             = yield
-          .span3
-            .well.sidebar-nav
-              %h3 Sidebar
-              %ul.nav.nav-list
-                %li.nav-header Sidebar
-                %li= link_to "Link 1", "/path1"
-                %li= link_to "Link 2", "/path2"
-                %li= link_to "Link 3", "/path3"
+          -# .span3
+          -#   .well.sidebar-nav
+          -#     %h3 Sidebar
+          -#     %ul.nav.nav-list
+          -#       %li.nav-header Sidebar
+          -#       %li= link_to "Link 1", "/path1"
+          -#       %li= link_to "Link 2", "/path2"
+          -#       %li= link_to "Link 3", "/path3"
     
-      %footer
-        %p &copy; Company 2012
+      -# %footer
+      -#   %p &copy; Company 2012
     /
       Le javascript
       \==================================================

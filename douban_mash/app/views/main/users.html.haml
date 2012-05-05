@@ -1,4 +1,12 @@
 - @users.each do |user|
-  .id= user.id
-  .data= user.data
+  .user
+    .id
+      = image_tag user.img
+      = link_to user.name, user.link, target: "_blank"
+      = user.gender
+    .link= user.json_data['content']
+    .control
+      - ['male', 'female', 'kill'].each do |cmd|
+        = button_to cmd, "/main/control_user?cmd=#{cmd}&id=#{user.id}", remote: true
+
 = will_paginate @users

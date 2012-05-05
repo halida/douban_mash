@@ -1,2 +1,8 @@
-%h1 Main#poker
-%p Find me in app/views/main/poker.html.haml
+= form_tag do
+  = hidden_field_tag :to_id, params[:to_id]
+  .id 
+    send to user:
+    = params[:to_id]
+  .title= text_field_tag :title
+  .desc= text_area_tag :desc
+  .commit= submit_tag "commit"

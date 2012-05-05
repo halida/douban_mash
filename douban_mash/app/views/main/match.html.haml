@@ -1,6 +1,7 @@
 %h1 This girl maybe good for you
-.img= @douban_user.data
+.title= @douban_user.name
 .desc= @douban_user.id
 
-.next= button_to "Next", "/main/match"
-.next= button_to "Poker Her", "main/poker"
+.next
+  = button_to "Next", "/main/match"
+  %input{type: 'submit', value: "Poker Her", onclick: "window.location = '/main/poker?to_id=#{@douban_user.id}'"}

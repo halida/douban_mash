@@ -6,6 +6,7 @@ DoubanMash::Application.routes.draw do
   get "main/result"
   get "main/poker"
   get "main/users"
+  post "main/control_user"
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 

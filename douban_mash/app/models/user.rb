@@ -31,5 +31,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def douban_token
+    if self[:douban_token].instance_of? String
+      YAML.load self[:douban_token]
+    else
+      self[:douban_token]
+    end      
+  end
 
 end
