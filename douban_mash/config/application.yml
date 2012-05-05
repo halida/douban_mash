@@ -1,0 +1,14 @@
+defaults: &defaults
+  douban:
+    key: 0f89b8bc396423112e9d2a34ac2c6933
+    secret: 4e0d52e13eb41484
+
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

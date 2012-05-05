@@ -1,7 +1,19 @@
 DoubanMash::Application.routes.draw do
+  get "main/show"
+
+  get "main/gender"
+
+  get "main/select_gender"
+
+  get "main/match"
+
+  get "main/result"
+
+  get "main/poker"
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :posts
 
@@ -54,7 +66,7 @@ DoubanMash::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'posts#index'
+  root :to => 'main#show'
 
   # See how all your routes lay out with "rake routes"
 

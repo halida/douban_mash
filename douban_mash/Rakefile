@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Questionary::Application.load_tasks
+DoubanMash::Application.load_tasks
