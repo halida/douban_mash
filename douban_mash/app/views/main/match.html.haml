@@ -14,7 +14,7 @@
         %td= link_to @douban_user.name, @douban_user.link, target: "_blank"
       %tr
         %td.em Location:
-        %td
+        %td= @douban_user.json_data['location']
       %tr
         %td.em Bio:
         %td= truncate @douban_user.json_data['content'], length: 200
