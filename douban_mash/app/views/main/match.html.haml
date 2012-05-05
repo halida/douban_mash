@@ -4,7 +4,7 @@
     - link = link_to @event.title, @event.link, target: "_blank"
     - where = @event.json_data['where']['valueString']
     - t = @event.json_data['when']['startTime'][0..9]
-    = "She will be #{where}, Shanghai on #{t} for joining the event: #{link}.".html_safe
+    = "She will go to #{where} on #{t} for joining the event: #{link}.".html_safe
   .left
     .img= link_to image_tag(@douban_user.big_img, class: "peop-img"), @douban_user.link, target: "_blank"
   .right
