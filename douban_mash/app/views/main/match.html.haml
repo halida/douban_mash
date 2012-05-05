@@ -1,7 +1,10 @@
 .match
   %h1 [ Magic of DoubanMash ]
   .desc
-    She will be #loc, Shanghai on #time for joining the event: #event.
+    - link = link_to @event.title, @event.link, target: "_blank"
+    - where = @event.json_data['where']['valueString']
+    - t = @event.json_data['when']['startTime'][0..9]
+    = "She will be #{where}, Shanghai on #{t} for joining the event: #{link}.".html_safe
   .left
     .img= link_to image_tag(@douban_user.big_img, class: "peop-img"), @douban_user.link, target: "_blank"
   .right
@@ -20,4 +23,5 @@
 
   .next
     %input{type: 'submit', value: "Approach Her", onclick: "window.location = '/main/poker?to_id=#{@douban_user.id}'"}
-    %input{type: 'submit', value: "Next", onclick: "window.location = '/main/match'"}
+    - if @has_next  
+      %input{type: 'submit', value: "Next", onclick: "window.location = '/main/match'"}

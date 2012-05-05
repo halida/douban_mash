@@ -1,26 +1,22 @@
-class Doubanuser < ActiveRecord::Base
-
-  has_many :books, class_name: "Userbook", foreign_key: "user_id"
-  has_many :userevents, foreign_key: "user_id"
-
+class Music < ActiveRecord::Base
   def json_data
     return {} if self.data.blank?
-    @json_data ||= Hash.from_xml(self.data)['entry']
+    @json_data ||= Hash.from_xml(self.data)['subject']
   end
 
   def img
     links = self.json_data['link']
-    links = links.reject{|v| v['rel'] != 'icon'}
+    links = links.reject{|v| v['rel'] != 'image'}
     return "" if links.count <= 0
     links = links[0]['href']
   end
 
   def big_img
     img = self.img
-    img.sub('/u', '/ul')
+    img.sub('/spic', '/lpic')
   end
 
-  def name
+  def title
     self.json_data['title']
   end
 
@@ -30,5 +26,6 @@ class Doubanuser < ActiveRecord::Base
     return "" if links.count <= 0
     links = links[0]['href']
   end
+
 
 end

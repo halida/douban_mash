@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
   has_many :matches
+  has_many :pokereds
 
   def admin?
     name == 'linjunhalida'

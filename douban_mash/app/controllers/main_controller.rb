@@ -1,8 +1,78 @@
 class MainController < ApplicationController
   def show
     return render if request.get?
-    current_user.matches.destroy_all
+    # redirect_to "/douban" unless user_signed_in?
+    # current_user.matches.destroy_all
+    # current_user.pokereds.destroy_all
+    session[:matches] = []
+    session[:pokereds] = []
     redirect_to "/main/pre_match"
+  end
+
+
+  def pre_match
+    # return redirect_to '/main/match' if current_user.matches.count >= Match::MATCH_COUNT
+    return redirect_to '/main/match' if session[:matches].count >= Match::MATCH_COUNT
+
+    if request.post?
+      # current_user.matches.create!
+      session[:matches] << 1
+    end
+
+    item_class = [Book, Music, Movie].sample
+    @item_type = item_class.name.downcase
+    @items = item_class.random(2)
+    
+  end
+
+  def match
+    # return redirect_to :root if current_user.matches.count < Match::MATCH_COUNT
+    return redirect_to :root if session[:matches].count < Match::MATCH_COUNT
+
+    @pokereds = session[:pokereds].count
+    return redirect_to :root if @pokereds >= Pokered::MAX_COUNT
+    @has_next = @pokereds < Pokered::MAX_COUNT - 1
+
+    target_gender = 'female'
+    scope = Doubanuser.where("data != ''")
+      .where(gender: target_gender)
+      .where('id in (select user_id from userevents)')
+    scope = scope.where("id not in (?)", session[:pokereds]) if session[:pokereds].count > 0
+    @douban_user = scope.random
+    @event = @douban_user.userevents.first.event
+    session[:pokereds] << @douban_user.id
+  end
+
+  def result
+  end
+
+  def poker
+    return unless check_douban_sign_in
+
+    @douban_user = Doubanuser.find params[:to_id]
+
+    if request.post?
+      douban = Doubanapi.get current_user.douban_token
+      douban.send_mail params[:to_id], params[:title], params[:desc]
+      render "result"
+    else
+      render
+    end
+  end
+
+  def users
+    redirect_to :root unless user.admin?
+    @users = Doubanuser.where("data != ''").order('id asc').paginate(page: params[:page])
+  end
+
+  def control_user
+    doubanuser = Doubanuser.find params[:id]
+    if ['male', 'female'].include? params['cmd']
+      doubanuser.update_attributes gender: params['cmd']
+    elsif params['cmd'] == 'kill'
+      doubanuser.update_attributes enabled: false
+    end
+    render inline: "alert('ok')", content_type: "application/javascript"
   end
 
   def gender
@@ -19,52 +89,4 @@ class MainController < ApplicationController
     redirect_to "/main/pre_match"
   end
 
-  def pre_match
-    return redirect_to '/main/match' if current_user.matches.count >= 4
-
-    if request.post?
-      # current_user.matches.create params.slice(:user_id, :item_id, :item_type, :doubanuser_id)
-      current_user.matches.create!
-    end
-
-    @item_type = "book"
-    @items = Book.random(2)
-    
-  end
-
-  def match
-    # target_gender = params[:commit] || 'female'
-    target_gender = 'female'
-    @douban_user = Doubanuser.where("data != ''").where(gender: target_gender).random
-  end
-
-  def result
-    # douban = Doubanapi.get current_user.douban_token
-    # render inline: douban.get_people.inspect
-  end
-
-  def poker
-    @douban_user = Doubanuser.find params[:to_id]
-    if request.post?
-      douban = Doubanapi.get current_user.douban_token
-      douban.send_mail params[:to_id], params[:title], params[:desc]
-      render "result"
-    else
-      render
-    end
-  end
-
-  def users
-    @users = Doubanuser.where("data != ''").order('id asc').paginate(page: params[:page])
-  end
-
-  def control_user
-    doubanuser = Doubanuser.find params[:id]
-    if ['male', 'female'].include? params['cmd']
-      doubanuser.update_attributes gender: params['cmd']
-    elsif params['cmd'] == 'kill'
-      doubanuser.update_attributes enabled: false
-    end
-    render inline: "alert('ok')", content_type: "application/javascript"
-  end
 end

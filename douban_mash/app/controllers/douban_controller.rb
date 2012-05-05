@@ -38,6 +38,7 @@ class DoubanController < ApplicationController
   end
 
   def create_user token
+    pre = session[:pre]
     people = douban.get_people
     id = people.id.split('/')[-1].to_i
     user = User.find_or_create_by_douban_id id
@@ -47,6 +48,6 @@ class DoubanController < ApplicationController
     user.password = people.title
     user.save
     sign_in user
-    redirect_to "/"
+    redirect_to pre || "/"
   end
 end

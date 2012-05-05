@@ -19,6 +19,7 @@
   %body
     .navbar
       %a.brand{:href => "/"}= "[ DoubanMash ]"
+      .control= link_to "Sign out", destroy_user_session_path, method: :delete if user_signed_in?
 
     .container(data-pjax-container)
       = yield
