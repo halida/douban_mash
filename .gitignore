@@ -9,11 +9,11 @@
 *.bak
 *.out
 
-douban_mash/tmp
-douban_mash/.sass-cache/
-douban_mash/Gemfile.lock
-douban_mash/db/development.sqlite3
-douban_mash/db/schema.rb
+/tmp
+/.sass-cache/
+/Gemfile.lock
+/db/development.sqlite3
+/db/schema.rb
 
 tags
 PYSMELLTAGS
